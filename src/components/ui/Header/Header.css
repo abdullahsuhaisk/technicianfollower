@@ -1,0 +1,17 @@
+.header {
+  background: url('../../../assets/orion.jpeg') no-repeat center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 10vh;
+  width: 100%;
+}
+.flex-container-header {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.logout-button {
+  height: 100px;
+  width: 100px;
+  background-color: #fff;
+}

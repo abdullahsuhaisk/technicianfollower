@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Header } from "./ui/Header/Header";
 
 const Login = () => {
   const [userMail, setUserMail] = useState('abc');
@@ -24,6 +25,7 @@ const Login = () => {
   }
 
   return <>
+  <Header />
     <section className="welcome">
       <div className="content">
         Contet

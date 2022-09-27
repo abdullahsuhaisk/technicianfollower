@@ -4,14 +4,12 @@ import { Context as JobContext } from './hooks/JobContext';
 
 const Confirmation = () => {
   let navigate = useNavigate();
-  const {state} = useContext(JobContext);
-  console.log(state)
+  const {state, approveNewJob} = useContext(JobContext);
   const isWorkingProperly = true;
   return (
     <>
-
-
       <button onClick={() => {
+        approveNewJob(true)
         navigate(`/`)
       }}> Set true
       </button>
