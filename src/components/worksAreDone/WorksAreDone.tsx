@@ -4,12 +4,15 @@ import { Table } from '../ui/Table/Table';
 
 export const WorksAreDone = ({ jobs }: any) => {
   console.log(jobs);
+  console.log(jobs.length);
   
-  const columns = ['Kat', 'name', 'Sorun']
-  return (
-    <div className='font'>
-      <Table jobs={jobs} columns={columns} />
-      {/* <Table columns={columns} data={jobs} /> */}
-    </div>
-  )
+  const columns = ['Kat', 'name', 'Sorun'];
+  if(jobs.length >0) {
+    return (
+      <div className='font'>
+        <Table jobs={jobs} columns={columns} />
+        {/* <Table columns={columns} data={jobs} /> */}
+      </div>
+    )
+  } return null;
 }

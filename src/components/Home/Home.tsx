@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { BiQr, BiQrScan } from "react-icons/bi";
+
 import { Qrcode } from "../ui/Qrcode";
 import { Context as JobContext } from '../hooks/JobContext';
-import { Header } from "../ui/Header/Header";
 import Button from "../ui/Button";
-import Table from "../ui/Table/RCTable";
 import { WorksAreDone } from "../worksAreDone/WorksAreDone";
+import "./Home.css"
 
 interface jobsI {
   floor: string;
@@ -17,8 +18,6 @@ const Home = () => {
   const [isQRcodeOpen, setIsQRcodeOpen] = useState<boolean>(false);
   const { state, approveNewJob, createNewJob, errorOnCreateJob, resetCreateJob, clearJob } = useContext(JobContext);
   const { jobs } = state;
-
-
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -63,15 +62,27 @@ const Home = () => {
     errorOnCreateJob(err)
     console.error(err)
   }
-
-  // console.log(jobs)
-
   return (
-    <div className="container">
-      
-      <Button handleClick={() => mockAddData()} title={'Open Qr code'} primary={true} />
-      <Button handleClick={() => openOrCloseQrCode(false)} title={'Close Qr code'} primary={false} />
-      <Qrcode isQRcodeOpen={isQRcodeOpen} setIsQRcodeOpen={setIsQRcodeOpen} handleScan={handleScan} handleError={handleError} />
+    <div className="homeContainer">
+      {
+        !isQRcodeOpen ? <>
+          <div className="qrcode-icon" onClick={() => {mockAddData()}}>
+            <BiQr style={{
+              color: "#41b14f",
+              width: "240px",
+              height: "240px"
+            }} />
+          </div>
+          <div className="qrcode qrcode-button">
+            <Button handleClick={() => openOrCloseQrCode(true)} title={'Open Qr code'} primary={true} />
+          </div>
+        </> : <>
+          <Qrcode isQRcodeOpen={isQRcodeOpen} handleScan={handleScan} handleError={handleError} />
+          <div className="qrcode qrcode-button">
+            <Button handleClick={() => openOrCloseQrCode(false)} title={'Close Qr code'} primary={false} />
+          </div>
+        </>
+      }
       <WorksAreDone jobs={jobs} />
       <div>
       </div>
@@ -79,21 +90,3 @@ const Home = () => {
   )
 }
 export default Home;
-
-/* 
-<button onClick={() => createNewJob({
-        floor: '3. kat',
-        name: 'duş başlığı',
-        isWorkingProperly: false
-      })} style={{margin:20}}>
-        createNewJob
-      </button>
-      <button onClick={() => {
-        approveNewJob(true)
-      }} style={{margin:20}}>
-        approve
-      </button>
-      <button onClick={() => {clearJob()}} style={{margin:20}}>
-        reset
-      </button> 
-*/

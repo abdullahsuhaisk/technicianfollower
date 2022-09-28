@@ -2,11 +2,13 @@ import React from 'react';
 import QrReader from 'react-qr-scanner';
 // react-qr-scanner don't have @types
 
-export const Qrcode = ({isQRcodeOpen, setIsQRcodeOpen, handleScan, handleError, newRead}: any | null) => {
+export const Qrcode = ({isQRcodeOpen, handleScan, handleError, newRead}: any | null) => {
   const previewStyle = {
     height: 240,
     width: 320,
   }
+
+  console.log(isQRcodeOpen)
 
   return (isQRcodeOpen) ?  (
     <div className='qrContainer'>
