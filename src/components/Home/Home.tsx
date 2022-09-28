@@ -1,7 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Qrcode } from "./ui/Qrcode";
-import { Context as JobContext } from './hooks/JobContext';
+import { Qrcode } from "../ui/Qrcode";
+import { Context as JobContext } from '../hooks/JobContext';
+import { Header } from "../ui/Header/Header";
+import Button from "../ui/Button";
+import Table from "../ui/Table/RCTable";
+import { WorksAreDone } from "../worksAreDone/WorksAreDone";
 
 interface jobsI {
   floor: string;
@@ -11,10 +15,10 @@ interface jobsI {
 
 const Home = () => {
   const [isQRcodeOpen, setIsQRcodeOpen] = useState<boolean>(false);
-
   const { state, approveNewJob, createNewJob, errorOnCreateJob, resetCreateJob, clearJob } = useContext(JobContext);
   const { jobs } = state;
-  console.log(state)
+
+
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -24,8 +28,18 @@ const Home = () => {
   })
 
   function openOrCloseQrCode(boolVal: boolean): void {
-    console.log(isQRcodeOpen)
     setIsQRcodeOpen(boolVal)
+  }
+
+  function mockAddData() {
+    setIsQRcodeOpen(false);
+    // const newValue = JSON.parse(data.text);
+    createNewJob({
+      floor: '3. kat',
+      name: 'duş başlığı',
+      isWorkingProperly: false
+    })
+    navigate(`/conf/`);
   }
 
   function handleScan(data: any) {
@@ -40,7 +54,7 @@ const Home = () => {
         name: 'duş başlığı',
         isWorkingProperly: false
       })
-
+      // console.log(state);
       navigate(`/conf/`);
     }
   }
@@ -50,25 +64,16 @@ const Home = () => {
     console.error(err)
   }
 
+  // console.log(jobs)
+
   return (
-    <div className="container font">
-      <button onClick={() => openOrCloseQrCode(true)}>
-        Open Qr code
-        {isQRcodeOpen}
-      </button>
-      <button onClick={() => openOrCloseQrCode(false)}>
-        Close Qr code
-        {isQRcodeOpen}
-      </button>
+    <div className="container">
+      
+      <Button handleClick={() => mockAddData()} title={'Open Qr code'} primary={true} />
+      <Button handleClick={() => openOrCloseQrCode(false)} title={'Close Qr code'} primary={false} />
       <Qrcode isQRcodeOpen={isQRcodeOpen} setIsQRcodeOpen={setIsQRcodeOpen} handleScan={handleScan} handleError={handleError} />
+      <WorksAreDone jobs={jobs} />
       <div>
-        <ul>
-          {jobs.map((job: jobsI) => (<>
-            <li>{job.name}</li>
-            <li>{job.floor}</li>
-            <li>{(job.isWorkingProperly).toString()}</li>
-          </>))}
-        </ul>
       </div>
     </div>
   )

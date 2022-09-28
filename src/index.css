@@ -6,6 +6,10 @@
   margin: 0;
 }
 
+
+input { border-style: none; background: transparent; outline: none; }
+/* button { padding: 0; background: none; border: none; outline: none; } */
+
 body {
   font-family: 'Lato', sans-serif;
   color: #333;
@@ -69,4 +73,16 @@ img {
   font-weight: 700;
   color: #fff;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.margin10x {
+  margin: 10px;
+}
+.width100 {
+  width: 100%;
 }

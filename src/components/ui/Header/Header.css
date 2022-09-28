@@ -11,7 +11,10 @@
 }
 
 .logout-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100px;
-  width: 100px;
-  background-color: #fff;
+  margin-right: 20px;
+  cursor: pointer;
 }

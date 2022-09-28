@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Header } from "./ui/Header/Header";
+import Button from "./ui/Button";
+import { Input } from "./ui/Input/Input";
 
 const Login = () => {
   const [userMail, setUserMail] = useState('abc');
@@ -12,7 +13,7 @@ const Login = () => {
       navigate('/');
     }
   })
-  
+
 
   function handleOnChange(e: any) {
     setUserMail(e.target.value)
@@ -25,9 +26,8 @@ const Login = () => {
   }
 
   return <>
-  <Header />
     <section className="welcome">
-      <div className="content">
+      <div className="content font">
         Contet
       </div>
       <div className="orionLogo">
@@ -37,14 +37,13 @@ const Login = () => {
       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa cupiditate, ad in ut eos quis culpa soluta cum repudiandae commodi consequuntur eveniet, non odio inventore totam itaque? Repellat, officiis voluptate.
     </section>
 
-    <div className="font">
-      <h1>
-        Login Page
-      </h1>
-      <label htmlFor="Write username">Login</label>
-      <input type="email" onChange={(e) => handleOnChange(e)} />
-      <button onClick={() => handleLogin() }>Submit</button>
+    <div className="flex welcome font">
+      <Input type="email" handleChange={handleOnChange} placeholder="What's your email?" />
     </div>
-    </>
+    <div className="flex welcome">
+      <Button handleClick={() => handleLogin()} title={"Submit"} />
+    </div>
+
+  </>
 }
 export default Login;

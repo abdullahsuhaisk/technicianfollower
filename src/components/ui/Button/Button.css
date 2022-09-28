@@ -1,0 +1,27 @@
+.btn {
+  padding: 0.9em 1em;
+  width: 100%;
+  display: inline-block;
+  border-radius: 11px;
+  text-align: center;
+  font-weight: 700;
+  outline: 0;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-secondary {
+  background: #267dcc;
+  color: #fff;
+  border: none;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+}
+
+.btn-primary {
+  /* background-color: #41b14f; */
+  background-image: linear-gradient(#9ec14c, #41b14f);
+  color: #fff;
+  text-shadow: 1px 1px 1px rgb(0 0 0 / 25%);
+  /* box-shadow: 0 4px #2d8f39; */
+  position: relative;
+}

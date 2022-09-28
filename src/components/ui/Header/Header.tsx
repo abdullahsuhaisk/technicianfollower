@@ -1,18 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { BiExit } from "react-icons/bi";
+
+
 import './Header.css'
 
-export const Header = () => {
+export const Header = ({userLogged, setUserlogged}: any) => {
 
-  useEffect(() => {
 
-  }, [])
-  
   return (
     <div className='header'>
       <div className="flex-container-header">
-        <div className="logout-button">
-
-        </div>
+        {
+          !userLogged ? null : <div className="logout-button flex" onClick={() => {
+            setUserlogged(false);
+            localStorage.clear();
+          }}>
+            <BiExit style={{
+              color: "rgb(255, 255, 255)",
+              width: "55px",
+              height: "55px"
+            }} />
+          </div>
+        }
       </div>
     </div>
   )
