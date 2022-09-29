@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Provider as JobProvider } from './hooks/JobContext';
 import { Header } from './ui/Header/Header';
 
@@ -13,24 +13,38 @@ const Loading = () => <p>Loading ...</p>;
 
 function App() {
   const [userLogged, setUserlogged] = useState(false);
+  let navigate = useNavigate();
 
   useEffect(() => {
     if (localStorage.getItem("username")) {
       setUserlogged(true)
+    } else {
+      navigate('/login');
     }
   }, [])
+
+  function loginFun(userMail: any) {
+    localStorage.setItem('username', userMail);
+    setUserlogged(true);
+    navigate('/');
+  }
+
+  function logout() {
+    setUserlogged(false);
+    localStorage.clear();
+  }
 
   return (
     <React.Suspense fallback={<Loading />}>
       <div className="container">
-      <Header userLogged={userLogged} setUserlogged={setUserlogged} />
         <JobProvider>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/settings' element={<QrCodeGenarator />} />
-          <Route path='/conf/' element={<Confirmation />} />
-        </Routes>
+          <Header userLogged={userLogged} loginFun={loginFun} logout={logout} />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login loginFun={loginFun} />} />
+            <Route path='/settings' element={<QrCodeGenarator />} />
+            <Route path='/conf/' element={<Confirmation />} />
+          </Routes>
         </JobProvider>
       </div>
     </React.Suspense>

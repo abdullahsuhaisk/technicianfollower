@@ -4,26 +4,19 @@ import Button from "./ui/Button";
 import { Input } from "./ui/Input/Input";
 import { BiCamera, BiMailSend, BiMobileAlt, BiQr, BiQrScan } from "react-icons/bi";
 
-const Login = () => {
+const Login = (props: any) => {
   const [userMail, setUserMail] = useState('abc');
+  // console.log(props)
+  // let navigate = useNavigate();
 
-  let navigate = useNavigate();
-
-  useEffect(() => {
-    if (localStorage.getItem("username")) {
-      navigate('/');
-    }
-  })
-
+  // useEffect(() => {
+  //   if (localStorage.getItem("username")) {
+  //     navigate('/');
+  //   }
+  // })
 
   function handleOnChange(e: any) {
     setUserMail(e.target.value)
-  }
-
-  function handleLogin() {
-    console.log(userMail)
-    localStorage.setItem('username', userMail)
-    navigate('/')
   }
 
   return <>
@@ -91,7 +84,7 @@ const Login = () => {
       <Input type="email" handleChange={handleOnChange} placeholder="What's your email?" />
     </div>
     <div className="flex welcome">
-      <Button handleClick={() => handleLogin()} title={"Giriş"} />
+      <Button handleClick={() => props.loginFun()} title={"Giriş"} />
     </div>
 
   </>

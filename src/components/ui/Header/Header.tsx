@@ -4,16 +4,13 @@ import { BiExit } from "react-icons/bi";
 
 import './Header.css'
 
-export const Header = ({userLogged, setUserlogged}: any) => {
-
-
+export const Header = ({ userLogged, logout }: any) => {
   return (
     <div className='header'>
       <div className="flex-container-header">
         {
           !userLogged ? null : <div className="logout-button flex" onClick={() => {
-            setUserlogged(false);
-            localStorage.clear();
+            logout()
           }}>
             <BiExit style={{
               color: "rgb(255, 255, 255)",
