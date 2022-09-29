@@ -11,17 +11,17 @@ const jobTypes = {
 }
 
 const initialState = {
-    errorMessage: '', name: '', floor: '', isWorkingProperly: false, jobs: []
+    errorMessage: '', name: '', floor: '', isWorkingProperly: false, date:'', jobs: []
 }
 
 const jobReducer = (state, action) => {
     switch (action.type) {
         case jobTypes.CREATE_A_NEW_JOB:
-            return { ...state, name: action.payload.name, floor: action.payload.floor }
+            return { ...state, name: action.payload.name, floor: action.payload.floor, date: new Date().toLocaleString('tr-TR') }
         case jobTypes.APPROVE_NEW_JOB:
             return { ...state, isWorkingProperly: action.payload }
         case jobTypes.PUSH_NEW_JOB:
-            const newJob = { isWorkingProperly: state.isWorkingProperly, name: state.name, floor: state.floor }
+            const newJob = { isWorkingProperly: state.isWorkingProperly, name: state.name, floor: state.floor, date: state.date }
             return { ...state, jobs: [...state.jobs, newJob] }
         case jobTypes.RESET_JOB_CREATE:
             const jobs = state.jobs;

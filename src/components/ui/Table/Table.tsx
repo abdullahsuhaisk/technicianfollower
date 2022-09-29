@@ -15,11 +15,15 @@ export const Table = ({jobs, columns}: any) => {
     </thead>
     <tbody>
       {
-        jobs && jobs.map((item: { floor: string | number | boolean | React.ReactFragment | React.ReactPortal | React.ReactElement<any, string | React.JSXElementConstructor<any>> | null | undefined; name: string | number | boolean | React.ReactFragment | React.ReactPortal | React.ReactElement<any, string | React.JSXElementConstructor<any>> | null | undefined; isWorkingProperly: boolean }, key: any)=> {
+        jobs && jobs.map((item: {
+          date: any; floor: string | number | boolean | React.ReactFragment | React.ReactPortal | React.ReactElement<any, string | React.JSXElementConstructor<any>> | null | undefined; name: string | number | boolean | React.ReactFragment | React.ReactPortal | React.ReactElement<any, string | React.JSXElementConstructor<any>> | null | undefined; isWorkingProperly: boolean 
+}, key: any)=> {
           return (
             <tr className= {key % 2 === 0 ? "active-row" : undefined} key={key}>
               <td>{item.floor}</td>
               <td>{item.name}</td>
+              <td>{item.date}</td>
+              
               <td>{item.isWorkingProperly === true ? "Çalışıyor": "Çalışmıyor"}</td>
             </tr>
           )

@@ -12,7 +12,9 @@ interface jobsI {
   floor: string;
   name: string;
   isWorkingProperly: boolean;
+  // date: string
 }
+// new Date().toLocaleString('tr-TR')
 
 const Home = () => {
   const [isQRcodeOpen, setIsQRcodeOpen] = useState<boolean>(false);
@@ -36,7 +38,8 @@ const Home = () => {
     createNewJob({
       floor: '3. kat',
       name: 'duş başlığı',
-      isWorkingProperly: false
+      isWorkingProperly: false,
+      // date: new Date().toLocaleString('tr-TR')
     })
     navigate(`/conf/`);
   }
@@ -51,7 +54,8 @@ const Home = () => {
       createNewJob({
         floor: '3. kat',
         name: 'duş başlığı',
-        isWorkingProperly: false
+        isWorkingProperly: false,
+        date: new Date().toLocaleString('tr-TR')
       })
       // console.log(state);
       navigate(`/conf/`);
