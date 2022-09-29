@@ -10,11 +10,16 @@
   border: none;
 }
 
+.btn:disabled {
+  opacity: 60%;
+  cursor: not-allowed;
+}
+
 .btn-secondary {
   background: #267dcc;
   color: #fff;
   border: none;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
 .btn-primary {
