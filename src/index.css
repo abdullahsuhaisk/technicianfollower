@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 
 * {
   box-sizing: border-box;
@@ -6,12 +6,16 @@
   margin: 0;
 }
 
-
-input { border-style: none; background: transparent; outline: none; }
+input {
+  border-style: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+}
 /* button { padding: 0; background: none; border: none; outline: none; } */
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   color: #333;
   line-height: 1.6;
 }
@@ -55,7 +59,7 @@ img {
   flex-direction: row;
   justify-content: center;
   margin-top: 20px;
-  background-color:rgba(57, 63, 84, 0.8);
+  background-color: rgba(57, 63, 84, 0.8);
   align-items: center;
   border-radius: 11px;
 }
@@ -65,10 +69,8 @@ img {
 }
 
 .content-icon {
-width: 10%;
+  width: 10%;
 }
-
-
 
 .font {
   font-weight: 700;
@@ -86,4 +88,9 @@ width: 10%;
 }
 .width100 {
   width: 100%;
+}
+
+.feedback-message {
+  font-weight: bold;
+  color: #fff;
 }
