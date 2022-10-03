@@ -57,12 +57,14 @@ const Home = () => {
     // console.log(data)
     if (data && data.text) {
       // TODO: Covert string text to JSON
-      // console.log("====> ", data.text)
+      console.log("====> ", data.text)
       setIsQRcodeOpen(false);
-      // const newValue = JSON.parse(data.text);
+      const newValue = JSON.parse(data.text);
+      console.log("====> ", newValue)
+
       createNewJob({
-        floor: "3. kat",
-        name: "duş başlığı",
+        floor: newValue.floor,
+        name: newValue.name,
         isWorkingProperly: false,
         date: new Date().toLocaleString("tr-TR"),
       });

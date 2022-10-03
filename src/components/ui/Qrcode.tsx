@@ -17,6 +17,8 @@ export const Qrcode = ({isQRcodeOpen, handleScan, handleError, newRead}: any | n
         style={previewStyle}
         onError={handleError}
         onScan={handleScan}
+        facingMode="rear"
+      
       />
       {/* <p>{this.state.result}</p> */}
     </div>
