@@ -98,7 +98,7 @@ const Home = () => {
           <div
             className="qrcode-icon"
             onClick={() => {
-              mockAddData();
+              openOrCloseQrCode(true);
             }}
           >
             <BiQr
