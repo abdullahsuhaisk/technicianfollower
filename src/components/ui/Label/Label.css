@@ -1,0 +1,14 @@
+.webflow-style-label {
+  position: relative;
+  display: flex;
+  width: 80%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  height: 60px;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: x-large;
+  padding-left: 15px;
+  background: #267dcc;
+  color: #fff;
+}
