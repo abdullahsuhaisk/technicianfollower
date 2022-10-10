@@ -75,3 +75,28 @@ img {
   font-weight: bold;
   color: #fff;
 }
+
+.qr-code-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-code-canvas {
+  margin-top: 70px;
+  border: 15px solid #fff;
+  border-radius: 5px;
+}
+.input-label-container {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin-top: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
