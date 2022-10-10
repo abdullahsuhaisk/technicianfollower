@@ -11,8 +11,8 @@ import {
 import Card from "./ui/Card/Card";
 
 type LoginProps = {
-  onLogin: (userMail: string) => void
-}
+  onLogin: (userMail: string) => void;
+};
 
 const Login = (props: LoginProps) => {
   const [userMail, setUserMail] = useState<string>("abc");
@@ -23,16 +23,28 @@ const Login = (props: LoginProps) => {
 
   return (
     <>
-      <Card title={'Telefonun ile yaptığın işleri kayıt edebilirsin'} Icon={BiMobileAlt} />
-      <Card title='Kamera izinlerini ver' Icon={BiCamera} />
-      <Card title='Takip etmen gereken gereçlerde QR kod bulacaksın' Icon={BiQr} />
-      <Card title='Qr kodunu okut' Icon={BiQrScan} />
-      <Card title='Mail adresin ile giriş yap ve Mail olarak gönder' Icon={BiMailSend} />
+      <Card
+        title={"Telefonun ile yaptığın işleri kayıt edebilirsin"}
+        Icon={BiMobileAlt}
+      />
+      <Card title="Kamera izinlerini ver" Icon={BiCamera} />
+      <Card
+        title="Takip etmen gereken gereçlerde QR kod bulacaksın"
+        Icon={BiQr}
+      />
+      <Card title="Qr kodunu okut" Icon={BiQrScan} />
+      <Card
+        title="Mail adresin ile giriş yap ve Mail olarak gönder"
+        Icon={BiMailSend}
+      />
       <div className="flex card-container font">
-        <form style={{width:'100%'}} onSubmit={(e) => {
-          e.preventDefault();
-          props.onLogin(userMail);
-          }}>
+        <form
+          style={{ width: "100%" }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            props.onLogin(userMail);
+          }}
+        >
           <Input
             className="flex card-container font"
             type="email"
