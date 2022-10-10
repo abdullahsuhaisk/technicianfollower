@@ -38,12 +38,20 @@ const Login = (props: LoginProps) => {
         Icon={BiMailSend}
       />
       <div className="flex card-container font">
-        <Input
-          className="flex card-container font"
-          type="email"
-          handleChange={handleOnChange}
-          placeholder="What's your email?"
-        />
+        <form
+          style={{ width: "100%" }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            props.onLogin(userMail);
+          }}
+        >
+          <Input
+            className="flex card-container font"
+            type="email"
+            handleChange={handleOnChange}
+            placeholder="What's your email?"
+          />
+        </form>
       </div>
       <div className="flex card-container">
         <Button handleClick={() => props.onLogin(userMail)} title={"Giriş"} />
