@@ -1,3 +1,4 @@
+import { clearJobs } from '../core/LocalStorageService';
 import createDataContext from './createDataContext'
 
 const jobTypes = {
@@ -7,11 +8,12 @@ const jobTypes = {
     RESET_JOB_CREATE: 'RESET_JOB_CREATE',
     ADD_ERROR_ON_CREATE_JOB: 'ADD_ERROR_ON_CREATE_JOB',
     PUSH_NEW_JOB: 'PUSH_NEW_JOB',
-    CLEAR_ALL_JOB_DATA: 'CLEAR_ALL_JOB_DATA'
+    CLEAR_ALL_JOB_DATA: 'CLEAR_ALL_JOB_DATA',
+    GETLOCALJOBS: 'SET_OLD_JOBS'
 }
 
 const initialState = {
-    errorMessage: '', name: '', floor: '', isWorkingProperly: false, date:'', jobs: []
+    errorMessage: '', name: '', floor: '', isWorkingProperly: false, date: '', jobs: []
 }
 
 const jobReducer = (state, action) => {
@@ -28,6 +30,8 @@ const jobReducer = (state, action) => {
             return { jobs }
         case jobTypes.ADD_ERROR_ON_CREATE_JOB:
             return { ...state, errorMessage: action.payload }
+        case jobTypes.GETLOCALJOBS:
+            return { ...state, jobs: [...action.payload] }
         case jobTypes.CLEAR_ALL_JOB_DATA:
             return { ...initialState };
         default:
@@ -59,6 +63,15 @@ const approveNewJob = (dispatch) => {
     }
 }
 
+const getOldJobs = (dispatch) => {
+    return data => {
+        dispatch({
+            type: jobTypes.GETLOCALJOBS,
+            payload: data
+        })
+    }
+}
+
 const errorOnCreateJob = (dispatch) => {
     return (err) => {
         dispatch({
@@ -73,11 +86,12 @@ const resetCreateJob = dispatch => () => {
 }
 
 const clearJob = dispatch => () => {
+    clearJobs();
     dispatch({ type: jobTypes.CLEAR_ALL_JOB_DATA })
 }
 
 export const { Provider, Context } = createDataContext(
     jobReducer,
-    { approveNewJob, createNewJob, errorOnCreateJob, resetCreateJob, clearJob },
+    { approveNewJob, createNewJob, errorOnCreateJob, resetCreateJob, clearJob, getOldJobs },
     initialState
 );

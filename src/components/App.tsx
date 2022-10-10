@@ -10,10 +10,10 @@ const QrCodeGenarator = React.lazy(() => import("./QrCodeGenarator"));
 const Confirmation = React.lazy(() => import("./Confirmation/Confirmation"));
 const QrCodePrinter = React.lazy(() => import("./QrCodePrinter"));
 
-const Loading = () => <p>Loading ...</p>;
+const Loading = () => <p> Loading ... </p>;
 
 function App() {
-  const [userLogged, setUserlogged] = useState(false);
+  const [userLogged, setUserlogged] = useState<boolean>(false);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function App() {
     }
   }, []);
 
-  function loginFun(userMail: any) {
+  function loginFun(userMail: string) {
     localStorage.setItem("username", userMail);
     setUserlogged(true);
     navigate("/");
@@ -40,10 +40,10 @@ function App() {
     <React.Suspense fallback={<Loading />}>
       <div className="container">
         <JobProvider>
-          <Header userLogged={userLogged} loginFun={loginFun} logout={logout} />
+          <Header userLogged={userLogged} onLogout={logout} />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login loginFun={loginFun} />} />
+            <Route path="/login" element={<Login onLogin={loginFun} />} />
             <Route path="/settings" element={<QrCodeGenarator />} />
             <Route path="/print" element={<QrCodePrinter />} />
             <Route path="/conf/" element={<Confirmation />} />

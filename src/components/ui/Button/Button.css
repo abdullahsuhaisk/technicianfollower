@@ -10,6 +10,7 @@
   outline: 0;
   cursor: pointer;
   border: none;
+  color: #fff;
 }
 
 .btn:disabled {
@@ -31,4 +32,8 @@
   text-shadow: 1px 1px 1px rgb(0 0 0 / 25%);
   /* box-shadow: 0 4px #2d8f39; */
   position: relative;
+}
+
+.btn-red {
+    background-color: red;
 }

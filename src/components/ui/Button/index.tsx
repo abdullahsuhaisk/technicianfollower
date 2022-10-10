@@ -7,12 +7,15 @@ const Button = ({
   title,
   primary,
   isDisabled,
+  red,
   btnType,
 }: any) => (
   <button
     onClick={handleClick}
     type={btnType ? btnType : "button"}
-    className={primary ? "btn btn-primary" : "btn btn-secondary"}
+    className={
+      red ? "btn btn-red" : primary ? "btn btn-primary" : "btn btn-secondary"
+    }
     disabled={isDisabled}
   >
     {title}
