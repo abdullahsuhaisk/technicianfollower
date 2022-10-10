@@ -1,10 +1,12 @@
 .btn {
   padding: 0.9em 1em;
+  height: 50px;
   width: 100%;
   display: inline-block;
   border-radius: 11px;
   text-align: center;
-  font-weight: 700;
+  font-weight: 500;
+  font-size: large;
   outline: 0;
   cursor: pointer;
   border: none;

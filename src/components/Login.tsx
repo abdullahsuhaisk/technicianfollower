@@ -15,7 +15,7 @@ type LoginProps = {
 };
 
 const Login = (props: LoginProps) => {
-  const [userMail, setUserMail] = useState<string>("abc");
+  const [userMail, setUserMail] = useState<string>("");
 
   function handleOnChange(e: any) {
     setUserMail(e.target.value);
