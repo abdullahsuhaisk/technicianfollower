@@ -11,7 +11,7 @@ import {
 } from "react-icons/bi";
 
 const Login = (props: any) => {
-  const [userMail, setUserMail] = useState("abc");
+  const [userMail, setUserMail] = useState("");
   // console.log(props)
   // let navigate = useNavigate();
 
