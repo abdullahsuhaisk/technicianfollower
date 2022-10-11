@@ -6,9 +6,8 @@ import { Header } from "./ui/Header/Header";
 // React.lazy takes in a single argument, a function that invokes a dynamic import, and returns a regular React Component.
 const Home = React.lazy(() => import("./Home/Home"));
 const Login = React.lazy(() => import("./Login"));
-const QrCodeGenarator = React.lazy(() => import("./QrCodeGenarator"));
+const QrCodeGenarator = React.lazy(() => import("./QrCodeGenerator.tsx/QrCodeGenarator"));
 const Confirmation = React.lazy(() => import("./Confirmation/Confirmation"));
-const QrCodePrinter = React.lazy(() => import("./QrCodePrinter"));
 
 const Loading = () => <p> Loading ... </p>;
 
@@ -44,8 +43,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login onLogin={loginFun} />} />
-            <Route path="/settings" element={<QrCodeGenarator />} />
-            <Route path="/print" element={<QrCodePrinter />} />
+            <Route path="/qr" element={<QrCodeGenarator />} />
             <Route path="/conf/" element={<Confirmation />} />
           </Routes>
         </JobProvider>

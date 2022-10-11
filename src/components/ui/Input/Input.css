@@ -30,4 +30,17 @@ input {
   background-size: 500% auto;
   animation: gradient 3s linear infinite;
 }
+
 button { padding: 0; background: none; border: none; outline: none; }
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

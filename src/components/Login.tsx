@@ -37,25 +37,27 @@ const Login = (props: LoginProps) => {
         title="Mail adresin ile giriş yap ve Mail olarak gönder"
         Icon={BiMailSend}
       />
-      <div className="flex card-container font">
-        <form
-          style={{ width: "100%" }}
-          onSubmit={(e) => {
-            e.preventDefault();
-            props.onLogin(userMail);
-          }}
-        >
+      <form
+        style={{ width: "100%" }}
+        onSubmit={(e) => {
+          e.preventDefault();
+          props.onLogin(userMail);
+        }}
+      >
+        <div className="flex card-container font">
           <Input
             className="flex card-container font"
             type="email"
-            handleChange={handleOnChange}
+            onChange={handleOnChange}
             placeholder="What's your email?"
+            id="email"
+            isRequired={true}
           />
-        </form>
-      </div>
-      <div className="flex card-container">
-        <Button handleClick={() => props.onLogin(userMail)} title={"Giriş"} />
-      </div>
+        </div>
+        <div className="flex card-container">
+          <Button btnType={"submit"} title={"Giriş"} />
+        </div>
+      </form>
     </>
   );
 };

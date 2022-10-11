@@ -4,10 +4,12 @@ import Button from "./ui/Button";
 import { useLocation } from "react-router-dom";
 import { useRef } from "react";
 
-const QrCodePrinter = () => {
-  const { state } = useLocation();
-  const { qrCodeText, bgColor } = state;
+const QrCodePrinter = ({qrCodeText}:any) => {
   const componentRef = useRef(null);
+
+  // const { state } = useLocation();
+  // const { qrCodeText, bgColor } = state;
+
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     pageStyle: ` @media print {
@@ -27,12 +29,12 @@ const QrCodePrinter = () => {
             id="qrCode"
             value={qrCodeText}
             size={250}
-            bgColor={bgColor}
+            bgColor={"#ffff"}
             level={"H"}
           />
         </div>
-        <div className="flex welcome">
-          <Button handleClick={handlePrint} title={"Yazdir"} />
+        <div className="flex margin10x ">
+          <Button handleClick={handlePrint} title={"Yazdır"} />
         </div>
       </div>
     </>
