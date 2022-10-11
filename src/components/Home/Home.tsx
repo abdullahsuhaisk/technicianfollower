@@ -4,7 +4,7 @@ import { BiQr } from "react-icons/bi";
 
 import { Qrcode } from "../ui/Qrcode";
 import { Context as JobContext } from "../hooks/JobContext";
-import Button from "../ui/Button";
+import Button from "../ui/Button/Button";
 import { WorkList } from "../worksList/WorksList";
 import "./Home.css";
 import { SendMail } from "../ui/SendMail";

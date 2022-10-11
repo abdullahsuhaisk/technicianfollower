@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "./ui/Button";
+import Button from "./ui/Button/Button";
 import { Input } from "./ui/Input/Input";
 import {
   BiCamera,
@@ -55,7 +55,7 @@ const Login = (props: LoginProps) => {
           />
         </div>
         <div className="flex card-container">
-          <Button btnType={"submit"} title={"Giriş"} />
+          <Button btnType={"submit"} title={"Giriş"} handleClick={() => {}} />
         </div>
       </form>
     </>

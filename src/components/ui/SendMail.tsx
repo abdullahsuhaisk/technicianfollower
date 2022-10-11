@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import Button from "../ui/Button";
+import Button from "./Button/Button";
 import { Context as JobContext } from "../hooks/JobContext";
 import emailjs from "@emailjs/browser";
 import { clearJobs } from "../core/LocalStorageService";

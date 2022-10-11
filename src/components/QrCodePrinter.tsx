@@ -1,6 +1,6 @@
 import { QRCodeCanvas } from "qrcode.react";
 import { useReactToPrint } from "react-to-print";
-import Button from "./ui/Button";
+import Button from "./ui/Button/Button";
 import { useLocation } from "react-router-dom";
 import { useRef } from "react";
 

@@ -15,6 +15,7 @@ const Card = ({ title, Icon }: cardProps) => (
           width: "55px",
           height: "55px",
         }}
+        data-testid='icon'
       />
     </div>
     <div className="font content-text">

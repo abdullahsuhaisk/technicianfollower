@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { saveJobsToLocalStorage } from '../core/LocalStorageService';
 import { Context as JobContext } from '../hooks/JobContext';
-import Button from '../ui/Button';
+import Button from '../ui/Button/Button';
 import './Confirmation.css';
 
 const Confirmation = () => {

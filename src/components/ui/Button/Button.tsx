@@ -1,15 +1,23 @@
 import React from "react";
 import "./Button.css";
 
+interface ButtonI {
+  handleClick: () => {} | void,
+  title: string,
+  primary? : boolean,
+  isDisabled?: boolean,
+  red?: boolean,
+  btnType?: "button" | "submit" | "reset" | undefined
+}
+
 const Button = ({
-  styles,
   handleClick,
   title,
   primary,
   isDisabled,
   red,
   btnType,
-}: any) => (
+}: ButtonI) => (
   <button
     onClick={handleClick}
     type={btnType ? btnType : "button"}
