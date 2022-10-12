@@ -46,7 +46,6 @@ const Login = (props: LoginProps) => {
       >
         <div className="flex card-container font">
           <Input
-            className="flex card-container font"
             type="email"
             onChange={handleOnChange}
             placeholder="What's your email?"
