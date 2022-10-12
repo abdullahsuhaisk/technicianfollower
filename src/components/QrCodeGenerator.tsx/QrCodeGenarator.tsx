@@ -33,7 +33,6 @@ const QrCodeGenarator = () => {
         <div className="input-label-container">
           <Label title="Kat Bilgisi" />
           <Input
-            className="flex card-container font"
             type="number"
             placeholder="4. Kat"
             isRequired={true}
@@ -44,7 +43,6 @@ const QrCodeGenarator = () => {
         <div className="input-label-container">
           <Label title="Yer Bilgisi" />
           <Input
-            className="flex card-container font"
             type="text"
             placeholder="Sigorta kutusu"
             isRequired={true}
