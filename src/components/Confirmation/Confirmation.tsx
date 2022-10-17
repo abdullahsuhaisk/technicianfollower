@@ -15,11 +15,12 @@ const Confirmation = () => {
       navigate('/');
     }
   }, []);
-
+  
   function approveAndNavigate(bool: boolean) {
     approveNewJob(bool);
-    saveJobsToLocalStorage(state.jobs)
+    console.log(state.jobs)
     navigate('/');
+    saveJobsToLocalStorage(state.jobs);
   }
 
   function handleResetCreateJob() {

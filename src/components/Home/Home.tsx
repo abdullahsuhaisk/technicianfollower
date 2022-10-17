@@ -8,25 +8,24 @@ import Button from "../ui/Button/Button";
 import { WorkList } from "../worksList/WorksList";
 import "./Home.css";
 import { SendMail } from "../ui/SendMail";
-import { getJobsFromLocalStorage } from "../core/LocalStorageService";
+import {
+  getJobsFromLocalStorage,
+  saveJobsToLocalStorage,
+} from "../core/LocalStorageService";
 
 export interface jobsI {
   floor: string;
   name: string;
   isWorkingProperly: boolean;
-  date: Date
+  date: Date;
 }
 
 const Home = () => {
   const [isQRcodeOpen, setIsQRcodeOpen] = useState<boolean>(false);
   const [isMailButtonDisable, setIsMailButtonDisable] = useState<boolean>(true);
 
-  const {
-    state,
-    createNewJob,
-    errorOnCreateJob,
-    getOldJobs
-  } = useContext(JobContext);
+  const { state, createNewJob, errorOnCreateJob, getOldJobs } =
+    useContext(JobContext);
 
   const { jobs } = state;
   const navigate = useNavigate();
@@ -34,8 +33,7 @@ const Home = () => {
   useEffect(() => {
     const sendMailDisable = jobs.length > 0 ? true : false;
     setIsMailButtonDisable(sendMailDisable);
-  }, [jobs])
-
+  }, [jobs]);
 
   useEffect(() => {
     if (!localStorage.getItem("username")) {
@@ -45,7 +43,7 @@ const Home = () => {
       // User can close browser, so we need to get prevJobs and set to reducer
       const prevJobs = getJobsFromLocalStorage();
       if (prevJobs && prevJobs.length > 0) {
-        getOldJobs(prevJobs)
+        getOldJobs(prevJobs);
       }
     }
   });
@@ -61,7 +59,7 @@ const Home = () => {
       floor: "3. kat",
       name: "duş başlığı",
       isWorkingProperly: false,
-      date: new Date().toLocaleString('tr-TR')
+      date: new Date().toLocaleString("tr-TR"),
     });
     navigate(`/conf/`);
   }
@@ -70,8 +68,7 @@ const Home = () => {
     if (data && data.text) {
       setIsQRcodeOpen(false);
       const newValue = JSON.parse(data.text);
-      console.log("====> ", newValue)
-
+      console.log("====> ", newValue);
       createNewJob({
         floor: newValue.floor,
         name: newValue.name,
@@ -87,41 +84,48 @@ const Home = () => {
     console.error(err);
   }
 
-  const QrCodeClose: React.FC = () =>
+  const QrCodeClose: React.FC = () => (
     <>
       <div
         className="qrcode-icon"
         onClick={() => {
           mockAddData();
-        }}>
+        }}
+      >
         <BiQr
           style={{
             color: "#41b14f",
             width: "240px",
             height: "240px",
-          }} />
+          }}
+        />
       </div>
       <div className="qrcode qrcode-button">
         <Button
           handleClick={() => openOrCloseQrCode(true)}
           title={"Open Qr code"}
-          primary={true} />
+          primary={true}
+        />
       </div>
     </>
+  );
 
-  const QrCodeOpen: React.FC = () => <>
-    <Qrcode
-      isQRcodeOpen={isQRcodeOpen}
-      handleScan={handleScan}
-      handleError={handleError}
-    />
-    <div className="qrcode qrcode-button">
-      <Button
-        handleClick={() => openOrCloseQrCode(false)}
-        title={"Close Qr code"}
-        primary={false} />
-    </div>
-  </>
+  const QrCodeOpen: React.FC = () => (
+    <>
+      <Qrcode
+        isQRcodeOpen={isQRcodeOpen}
+        handleScan={handleScan}
+        handleError={handleError}
+      />
+      <div className="qrcode qrcode-button">
+        <Button
+          handleClick={() => openOrCloseQrCode(false)}
+          title={"Close Qr code"}
+          primary={false}
+        />
+      </div>
+    </>
+  );
 
   return (
     <div className="homeContainer">
@@ -130,11 +134,10 @@ const Home = () => {
       <SendMail
         fromMail={localStorage.getItem("username")}
         jobs={jobs}
-        isDisabled={isMailButtonDisable} />
+        isDisabled={isMailButtonDisable}
+      />
     </div>
   );
 };
-
-
 
 export default Home;
