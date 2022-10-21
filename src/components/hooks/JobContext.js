@@ -1,97 +1,120 @@
-import { clearJobs } from '../core/LocalStorageService';
-import createDataContext from './createDataContext'
+import { clearJobs, saveJobsToLocalStorage } from "../core/LocalStorageService";
+import createDataContext from "./createDataContext";
 
 const jobTypes = {
-    ADD_NEW_JOB: 'ADD_NEW_JOB',
-    CREATE_A_NEW_JOB: 'CREATE_A_NEW_JOB',
-    APPROVE_NEW_JOB: 'APPROVE_NEW_JOB',
-    RESET_JOB_CREATE: 'RESET_JOB_CREATE',
-    ADD_ERROR_ON_CREATE_JOB: 'ADD_ERROR_ON_CREATE_JOB',
-    PUSH_NEW_JOB: 'PUSH_NEW_JOB',
-    CLEAR_ALL_JOB_DATA: 'CLEAR_ALL_JOB_DATA',
-    GETLOCALJOBS: 'SET_OLD_JOBS'
-}
+  ADD_NEW_JOB: "ADD_NEW_JOB",
+  CREATE_A_NEW_JOB: "CREATE_A_NEW_JOB",
+  APPROVE_NEW_JOB: "APPROVE_NEW_JOB",
+  RESET_JOB_CREATE: "RESET_JOB_CREATE",
+  ADD_ERROR_ON_CREATE_JOB: "ADD_ERROR_ON_CREATE_JOB",
+  PUSH_NEW_JOB: "PUSH_NEW_JOB",
+  CLEAR_ALL_JOB_DATA: "CLEAR_ALL_JOB_DATA",
+  GETLOCALJOBS: "SET_OLD_JOBS",
+};
 
 const initialState = {
-    errorMessage: '', name: '', floor: '', isWorkingProperly: false, date: '', jobs: []
-}
+  errorMessage: "",
+  name: "",
+  floor: "",
+  isWorkingProperly: false,
+  date: "",
+  jobs: [],
+};
 
 const jobReducer = (state, action) => {
-    switch (action.type) {
-        case jobTypes.CREATE_A_NEW_JOB:
-            return { ...state, name: action.payload.name, floor: action.payload.floor, date: new Date().toLocaleString('tr-TR') }
-        case jobTypes.APPROVE_NEW_JOB:
-            return { ...state, isWorkingProperly: action.payload }
-        case jobTypes.PUSH_NEW_JOB:
-            const newJob = { isWorkingProperly: state.isWorkingProperly, name: state.name, floor: state.floor, date: state.date }
-            return { ...state, jobs: [...state.jobs, newJob] }
-        case jobTypes.RESET_JOB_CREATE:
-            const jobs = state.jobs;
-            return { jobs }
-        case jobTypes.ADD_ERROR_ON_CREATE_JOB:
-            return { ...state, errorMessage: action.payload }
-        case jobTypes.GETLOCALJOBS:
-            return { ...state, jobs: [...action.payload] }
-        case jobTypes.CLEAR_ALL_JOB_DATA:
-            return { ...initialState };
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case jobTypes.CREATE_A_NEW_JOB:
+      return {
+        ...state,
+        name: action.payload.name,
+        floor: action.payload.floor,
+        date: new Date().toLocaleString("tr-TR"),
+      };
+    case jobTypes.APPROVE_NEW_JOB:
+      return { ...state, isWorkingProperly: action.payload };
+    case jobTypes.PUSH_NEW_JOB:
+      const newJob = {
+        isWorkingProperly: state.isWorkingProperly,
+        name: state.name,
+        floor: state.floor,
+        date: state.date,
+      };
+      return { ...state, jobs: [...state.jobs, newJob] };
+    case jobTypes.RESET_JOB_CREATE:
+      const jobs = state.jobs;
+      saveJobsToLocalStorage(jobs);
+      return { jobs };
+    case jobTypes.ADD_ERROR_ON_CREATE_JOB:
+      return { ...state, errorMessage: action.payload };
+    case jobTypes.GETLOCALJOBS:
+      return { ...state, jobs: [...action.payload] };
+    case jobTypes.CLEAR_ALL_JOB_DATA:
+      return { ...initialState };
+    default:
+      return state;
+  }
 };
 
 const createNewJob = (dispatch) => {
-    return (data) => {
-        dispatch({
-            type: jobTypes.CREATE_A_NEW_JOB,
-            payload: data
-        });
-    }
-}
+  return (data) => {
+    dispatch({
+      type: jobTypes.CREATE_A_NEW_JOB,
+      payload: data,
+    });
+  };
+};
 
 const approveNewJob = (dispatch) => {
-    return (data) => {
-        dispatch({
-            type: jobTypes.APPROVE_NEW_JOB,
-            payload: data
-        });
-        dispatch({
-            type: jobTypes.PUSH_NEW_JOB
-        })
-        dispatch({
-            type: jobTypes.RESET_JOB_CREATE
-        })
-    }
-}
+  return (data) => {
+    dispatch({
+      type: jobTypes.APPROVE_NEW_JOB,
+      payload: data,
+    });
+    dispatch({
+      type: jobTypes.PUSH_NEW_JOB,
+    });
+    dispatch({
+      type: jobTypes.RESET_JOB_CREATE,
+    });
+  };
+};
 
 const getOldJobs = (dispatch) => {
-    return data => {
-        dispatch({
-            type: jobTypes.GETLOCALJOBS,
-            payload: data
-        })
-    }
-}
+  return (data) => {
+    dispatch({
+      type: jobTypes.GETLOCALJOBS,
+      payload: data,
+    });
+  };
+};
 
 const errorOnCreateJob = (dispatch) => {
-    return (err) => {
-        dispatch({
-            type: jobTypes.ADD_ERROR_ON_CREATE_JOB,
-            payload: err
-        });
-    }
-}
+  return (err) => {
+    dispatch({
+      type: jobTypes.ADD_ERROR_ON_CREATE_JOB,
+      payload: err,
+    });
+  };
+};
 
-const resetCreateJob = dispatch => () => {
-    dispatch({ type: jobTypes.RESET_JOB_CREATE })
-}
+const resetCreateJob = (dispatch) => () => {
+  dispatch({ type: jobTypes.RESET_JOB_CREATE });
+};
 
-const clearJob = dispatch => () => {
-    clearJobs();
-    dispatch({ type: jobTypes.CLEAR_ALL_JOB_DATA })
-}
+const clearJob = (dispatch) => () => {
+  clearJobs();
+  dispatch({ type: jobTypes.CLEAR_ALL_JOB_DATA });
+};
 
 export const { Provider, Context } = createDataContext(
-    jobReducer,
-    { approveNewJob, createNewJob, errorOnCreateJob, resetCreateJob, clearJob, getOldJobs },
-    initialState
+  jobReducer,
+  {
+    approveNewJob,
+    createNewJob,
+    errorOnCreateJob,
+    resetCreateJob,
+    clearJob,
+    getOldJobs,
+  },
+  initialState
 );
